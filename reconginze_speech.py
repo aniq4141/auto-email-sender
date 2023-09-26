@@ -3,15 +3,15 @@ import speech_recognition as sr
 # Initialize the recognizer
 r = sr.Recognizer()
 
-# Capture audio from the microphone
+# Capturegit  audio from the microphone
 with sr.Microphone() as source:
     print("Listening...")
     try:
-        audio = r.listen(source)
-        print("Listening...")
-    except Exception as e:
-        print(e)
-    print("hello")
+        audio = r.listen(source, timeout=5)  # Record audio for up to 5 seconds
+        print("Audio captured successfully.")
+    except sr.WaitTimeoutError:
+        print("No speech detected. Exiting...")
+        exit()
 
 # Convert the audio to text
 try:
